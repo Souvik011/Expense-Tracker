@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import WelcomePage from "./Pages/WelcomePage";
 import SignupPage from "./Pages/SignUpPage";
 import LogInPage from "./Pages/LogInPage";
+import ProfileComplete from "./Pages/ProfileComplete";
 import LoginContext from "./Context/Login-Context";
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           {Ctx.isLoggedIn ? <Route path="/LogIn" element={<LogInPage />}/> : <Route path="/LogIn" element={<WelcomePage/>}/>}
 
           <Route path="/welcome" element={<WelcomePage />}/>
+
+          <Route path="/completeProfile" element={<ProfileComplete />}/>
         </Routes>
       </LoginContextProvider>
     </React.Fragment>
