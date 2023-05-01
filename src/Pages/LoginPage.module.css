@@ -17,11 +17,14 @@
 
 .signIn input {
   margin: 4%;
+  height:2rem;
 }
 
 .signIn button {
   display: inline-block;
   border-radius: 2px;
+  height: auto;
+  width: 6rem;
 }
 .section {
   margin-top: 2px;

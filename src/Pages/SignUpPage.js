@@ -92,7 +92,7 @@ const SignupPage = () => {
         </div>
         <button>Sign Up</button>
         <div className={classes.signIn}> Already Have An Account ?
-        <NavLink  to="/LogIn" ><button>LogIn</button></NavLink>
+        <NavLink  to="/LogIn" ><button style={{backgroundColor:"blue"}} >LogIn</button></NavLink><NavLink to="/forgotPass"><button style={{backgroundColor:"red"}}>Forget Password</button></NavLink>
         </div>
       </form>
       

@@ -31,11 +31,11 @@ const WelcomePage = () => {
       <div className={classes.section}>
         <h2 className={classes.title}>Welcome To Expense Tracker</h2>
       </div>
-      <div className={classes.section}>
+      <div className={classes.status}>
         To Complete Your Profile
         <NavLink className={classes.button} to="/completeProfile">Click Here</NavLink>
       </div>
-      <button onClick={verifyEmailHandler}>Verify Email</button>
+      <button className={classes.button} onClick={verifyEmailHandler}>Verify Email</button>
     </div>
   );
 };
