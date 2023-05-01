@@ -40,17 +40,17 @@ const LogInPage = () => {
       emailRef.current.value = "";
       pswdRef.current.value = "";
 
-      loginCtx.submitEmailToken(data.email, data.idToken);
+      loginCtx.login(data.email, data.idToken);
 
       
     } else {
       alert(data.error.message);
     }
   };
-  return (
+  return (<React.Fragment>
     <form onSubmit={signInSubmitHandler} className={classes.signIn}>
       <div>
-        <h3>Sign In</h3>
+        <h3>Log In</h3>
       </div>
       <div>
         <input
@@ -66,8 +66,16 @@ const LogInPage = () => {
           ref={pswdRef}
         />
       </div>
-      <button>Sign In</button>
+      <button>Log In</button>
+      <div>
+      <NavLink to="/signUp">Forgot Password Click Here</NavLink>
+      </div>
+      
     </form>
+    <div className={classes.section}>
+        Don't Have a Account ? <NavLink to="/signUp">Sign Up </NavLink> Now
+    </div>
+    </React.Fragment>
   );
 };
 

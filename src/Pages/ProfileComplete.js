@@ -1,10 +1,12 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import LoginContext from "../Context/Login-Context";
 import classes from "./ProfileComplete.module.css";
 
 const ProfileComplete = () => {
   const fullNameRef = useRef("");
   const photoRef = useRef("");
+  const [displayNameValue, setDisplayNameValue] = useState("");
+  const [photoUrlValue, setPhotoUrlValue] = useState("");
 
   const loginCtx = useContext(LoginContext);
 
@@ -41,6 +43,31 @@ const ProfileComplete = () => {
     }
   };
 
+  useEffect(() => {
+    const fillInputsHandler = async () => {
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDICIhykIkqE7MfZMMbKHGVp7G1EQVAeK4",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: loginCtx.idToken,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setDisplayNameValue(data.users[0].displayName);
+        setPhotoUrlValue(data.users[0].photoUrl);
+      } else {
+        alert(data.error.message);
+      }
+    };
+    fillInputsHandler();
+  }, []);
+
   return (
     <React.Fragment>
       <div className={classes.section}>
@@ -52,8 +79,18 @@ const ProfileComplete = () => {
       >
         <h3>Contact Details</h3>
         <div>
-          <input placeholder="Full Name" input="text" ref={fullNameRef} />
-          <input placeholder="Profile Photo URL" input="text" ref={photoRef} />
+          <input
+            placeholder="Full Name"
+            input="text"
+            ref={fullNameRef}
+            defaultValue={displayNameValue}
+          />
+          <input
+            placeholder="Profile Photo URL"
+            input="text"
+            ref={photoRef}
+            defaultValue={photoUrlValue}
+          />
         </div>
         <button>Update Details</button>
       </form>
