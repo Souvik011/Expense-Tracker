@@ -13,7 +13,7 @@ const Header = () => {
       </div>
       {!loginCtx.isLoggedIn && <Link to="/signUp">Sign Up</Link>}
       {!loginCtx.isLoggedIn && <Link to="/LogIn">Log In</Link>}
-      
+      {!!loginCtx.isLoggedIn && <Link to="/expenses">Expenses</Link>}
       {loginCtx.isLoggedIn && (
         <Link onClick={loginCtx.logout} to="/LogIn">
           Log out

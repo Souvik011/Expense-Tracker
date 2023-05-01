@@ -7,6 +7,7 @@ import LogInPage from "./Pages/LogInPage";
 import ProfileComplete from "./Pages/ProfileComplete";
 import Header from "./Header/Header";
 import LoginContext from "./Context/Login-Context";
+import Expenses from "./Pages/Expenses/Expenses";
 import ForgotPassword from "./Pages/ForgotPassword";
 
 function App() {
@@ -30,6 +31,12 @@ function App() {
           <Route path="/LogIn" element={<WelcomePage />} />
         ) : (
           <Route path="/LogIn" element={<LogInPage />} />
+        )}
+
+        {Ctx.isLoggedIn ? (
+          <Route path="/expenses" element={<Expenses />} />
+        ) : (
+          <Route path="/expenses" element={<LogInPage />} />
         )}
 
         {Ctx.isLoggedIn ? (

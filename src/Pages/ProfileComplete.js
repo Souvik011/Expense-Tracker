@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import LoginContext from "../Context/Login-Context";
 import classes from "./ProfileComplete.module.css";
+import { Form } from "react-bootstrap";
 
 const ProfileComplete = () => {
   const fullNameRef = useRef("");
@@ -70,31 +71,27 @@ const ProfileComplete = () => {
 
   return (
     <React.Fragment>
-      <div className={classes.section}>
-        Winners Never Quit , Quitters Never Win
+    <Form  onSubmit={updateDetailsHandler} className={classes.IncompleteProfile} >
+      <h3>Contact Details</h3>
+      <div>
+        <label>Update Your Profile Name</label>
+        <input
+          placeholder="Full Name"
+          input="text"
+          ref={fullNameRef}
+          defaultValue={displayNameValue}
+        />
+        <label>Update Your Photo</label>
+        <input
+          placeholder="Profile Photo URL"
+          input="text"
+          ref={photoRef}
+          defaultValue={photoUrlValue}
+        />
       </div>
-      <form
-        className={classes.IncompleteProfile}
-        onSubmit={updateDetailsHandler}
-      >
-        <h3>Contact Details</h3>
-        <div>
-          <input
-            placeholder="Full Name"
-            input="text"
-            ref={fullNameRef}
-            defaultValue={displayNameValue}
-          />
-          <input
-            placeholder="Profile Photo URL"
-            input="text"
-            ref={photoRef}
-            defaultValue={photoUrlValue}
-          />
-        </div>
-        <button>Update Details</button>
-      </form>
-    </React.Fragment>
+      <button>Update Details</button>
+    </Form>
+  </React.Fragment>
   );
 };
 
