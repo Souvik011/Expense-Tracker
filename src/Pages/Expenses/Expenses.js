@@ -1,22 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import ExpenseItem from "./ExpenseItem";
+import axios from "axios";
 
 const Expenses = () => {
   const moneyRef = useRef("");
   const descRef = useRef("");
   const categoryRef = useRef("");
   const [expenseItem, setExpenseItem] = useState([]);
+
+  useEffect(()=> {
+    axios.get(`https://expense-tracker-5ef39-default-rtdb.firebaseio.com/Expenses.json`)
+    .then((res) => {
+      let Expenses = [];
+      for (let key in res.data) {
+        Expenses.push({ id: key, ...res.data[key] });
+      }
+      setExpenseItem(Expenses);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[]);
+
   const addExpenseHandler = (event) => {
     event.preventDefault();
-    setExpenseItem([
-      ...expenseItem,
-      {
-        money: moneyRef.current.value,
-        description: descRef.current.value,
-        category: categoryRef.current.value,
-      },
-    ]);
+    const ExpenseItem = {
+      money: moneyRef.current.value,
+      description: descRef.current.value,
+      category: categoryRef.current.value,
+    };
+    axios.post(`https://expense-tracker-5ef39-default-rtdb.firebaseio.com/Expenses.json`,ExpenseItem)
+    .then((res) => {
+      setExpenseItem((prevItem) => {
+        return [...prevItem, { id: res.data.name, ...ExpenseItem}];
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
   return (
     <React.Fragment >
