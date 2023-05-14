@@ -1,0 +1,76 @@
+.ExpenseItem {
+    width: 70%;
+    height: 25rem;
+    margin: 1rem auto;
+    overflow-y: scroll;
+    background-color: aliceblue;
+  }
+
+  .ExpenseItem h2 {
+    text-align: left;
+    margin-right: 3rem;
+  }
+
+  .ExpenseItem header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .ExpenseItem li {
+    list-style:none;
+    box-shadow:tomato;
+    background-color: cadetblue;
+    color:black;
+    font-style: oblique;
+  }
+
+  .ExpenseItem div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ExpenseItem button:hover,
+  button.hover {
+    background-color: rgb(171, 102, 11);
+  }
+
+  .editExpense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .editExpense label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .editExpense input[type="text"],
+  .editExpense input[type="number"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .editExpense input[type="submit"],
+  .editExpense button {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .editExpense input[type="submit"]:hover,
+  .editExpense button:hover {
+    background-color: #e84545;
+  }
