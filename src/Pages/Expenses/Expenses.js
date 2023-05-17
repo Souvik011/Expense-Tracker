@@ -3,11 +3,37 @@ import { Form } from "react-bootstrap";
 import ExpenseItem from "./ExpenseItem";
 import axios from "axios";
 
-const Expenses = () => {
+const Expenses = (props) => {
   const moneyRef = useRef("");
   const descRef = useRef("");
   const categoryRef = useRef("");
   const [expenseItem, setExpenseItem] = useState([]);
+
+  const saveHandler=(newexpense)=>{
+
+    axios.put(`https://expense-tracker-5ef39-default-rtdb.firebaseio.com/Expenses/${newexpense.id}.json`,newexpense)
+    .then(
+      (res)=>{
+        setExpenseItem((prevExpenses)=>{
+          const index=prevExpenses.findIndex((expense)=>expense.id===newexpense.id)
+
+          const updatedExpense=[...prevExpenses]
+          updatedExpense[index]=newexpense
+          return updatedExpense
+        })
+
+      }
+    ).catch((err)=>{
+      console.log(err)
+    })
+  };
+  const deleteHandler=(id)=>{
+    axios.delete(`https://expense-tracker-5ef39-default-rtdb.firebaseio.com/Expenses/${id}.json`).then((res)=>{
+      setExpenseItem((prevExpenses)=>{
+        return prevExpenses.filter((expense)=>expense.id !== id)
+      })
+    })
+  };
 
   useEffect(()=> {
     axios.get(`https://expense-tracker-5ef39-default-rtdb.firebaseio.com/Expenses.json`)
@@ -40,6 +66,8 @@ const Expenses = () => {
       console.log(err);
     });
   };
+ 
+
   return (
     <React.Fragment >
       <h2 >Expenses Page...</h2>
@@ -62,7 +90,7 @@ const Expenses = () => {
         </div>
         <button>Add Expense</button>
       </Form>
-      <ExpenseItem expenseItem={expenseItem} />
+      <ExpenseItem expenseItem={expenseItem} onDelete={deleteHandler} onEdit={saveHandler}/>
     </React.Fragment>
   );
 };

@@ -1,6 +1,7 @@
-import React, { useContext,useRef } from "react";
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
-import LoginContext from "../Context/Login-Context";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/Auth";
 import classes from "./LoginPage.module.css";
 
 const LogInPage = () => {
@@ -9,7 +10,7 @@ const LogInPage = () => {
 
   
 
-  const loginCtx = useContext(LoginContext);
+  const dispatch = useDispatch();
 
   const signInSubmitHandler = async (event) => {
     event.preventDefault();
@@ -40,7 +41,7 @@ const LogInPage = () => {
       emailRef.current.value = "";
       pswdRef.current.value = "";
 
-      loginCtx.login(data.email, data.idToken);
+      dispatch(authActions.login({ email: data.email, idToken: data.idToken }));
 
       
     } else {

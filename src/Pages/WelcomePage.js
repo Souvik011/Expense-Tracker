@@ -1,17 +1,18 @@
-import React,{useContext} from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import classes from "./WelcomePage.module.css";
-import LoginContext from "../Context/Login-Context";
+
 
 const WelcomePage = () => {
-  const loginCtx = useContext(LoginContext);
+  const idToken = useSelector((state) => state.idToken);
     const verifyEmailHandler = async () => {
       const response = await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDICIhykIkqE7MfZMMbKHGVp7G1EQVAeK4",
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: loginCtx.idToken,
+            idToken: idToken,
             requestType: "VERIFY_EMAIL",
           }),
           headers: {

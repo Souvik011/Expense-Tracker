@@ -1,5 +1,6 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
-import LoginContext from "../Context/Login-Context";
+import React, {  useRef, useEffect, useState } from "react";
+// import LoginContext from "../Context/Login-Context";
+import { useSelector  } from "react-redux";
 import classes from "./ProfileComplete.module.css";
 import { Form } from "react-bootstrap";
 
@@ -9,7 +10,7 @@ const ProfileComplete = () => {
   const [displayNameValue, setDisplayNameValue] = useState("");
   const [photoUrlValue, setPhotoUrlValue] = useState("");
 
-  const loginCtx = useContext(LoginContext);
+  const idToken = useSelector((state) => state.idToken);
 
   const updateDetailsHandler = async (event) => {
     event.preventDefault();
@@ -21,7 +22,7 @@ const ProfileComplete = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          idToken: loginCtx.idToken,
+          idToken: idToken,
           displayName: fullName,
           photoUrl: photoUrl,
           returnSecureToken: true,
@@ -51,7 +52,7 @@ const ProfileComplete = () => {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: loginCtx.idToken,
+            idToken: idToken,
           }),
           headers: {
             "Content-Type": "application/json",
