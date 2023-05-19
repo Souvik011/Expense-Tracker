@@ -11,3 +11,14 @@
     margin: 3px;
     text-decoration: none;
   }
+  .activate {
+    align-items: center;
+    background-color: white;
+    color: red;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    font-style: oblique bold;
+    margin: 1rem auto;
+    justify-content: center;
+    display: flex;
+  }

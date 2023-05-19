@@ -5,7 +5,7 @@ import classes from "./WelcomePage.module.css";
 
 
 const WelcomePage = () => {
-  const idToken = useSelector((state) => state.idToken);
+  const idToken = useSelector((state) => state.auth.idToken);
     const verifyEmailHandler = async () => {
       const response = await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDICIhykIkqE7MfZMMbKHGVp7G1EQVAeK4",

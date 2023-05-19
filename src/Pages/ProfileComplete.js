@@ -10,7 +10,7 @@ const ProfileComplete = () => {
   const [displayNameValue, setDisplayNameValue] = useState("");
   const [photoUrlValue, setPhotoUrlValue] = useState("");
 
-  const idToken = useSelector((state) => state.idToken);
+  const idToken = useSelector((state) => state.auth.idToken);
 
   const updateDetailsHandler = async (event) => {
     event.preventDefault();

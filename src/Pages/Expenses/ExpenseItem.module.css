@@ -21,14 +21,24 @@
     list-style:none;
     box-shadow:tomato;
     background-color: cadetblue;
+    margin: 1rem auto;
     color:black;
     font-style: oblique;
   }
 
   .ExpenseItem div {
-    display: flex;
+    display: inline;
     align-items: center;
     justify-content: space-between;
+    margin: 2rem auto;
+    padding-left: 10px;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic bold;
+  }
+
+  .ExpenseItem button {
+    margin-left: 2rem ;
   }
 
   .ExpenseItem button:hover,
@@ -68,9 +78,14 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+    margin: 1rem auto;
   }
   
   .editExpense input[type="submit"]:hover,
   .editExpense button:hover {
     background-color: #e84545;
   }
+
+  
+
+  

@@ -12,14 +12,14 @@ import Expenses from "./Pages/Expenses/Expenses";
 import ForgotPassword from "./Pages/ForgotPassword";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   
   return (
     <React.Fragment>
       <Header />
       <Routes>
         {isLoggedIn ? (
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/" element={<Expenses />} />
         ) : (
           <Route path="/" element={<SignupPage />} />
         )}

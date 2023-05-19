@@ -1,0 +1,23 @@
+.Expenses {
+    background-color: aliceblue;
+    align-items: center;
+    margin: 2rem auto;
+    padding-bottom: 5rem;
+    font-size: larger;
+  }
+  .DarkExpense {
+    background-color: #2c3333;
+    color: white;
+  }
+  h2{
+      text-align: center;
+  }
+  .Expenses div {
+    margin: 2rem ;
+    display: inline;
+    background-color: aqua;
+    
+  }
+  .Expenses button {
+    background-color: blue;
+  }

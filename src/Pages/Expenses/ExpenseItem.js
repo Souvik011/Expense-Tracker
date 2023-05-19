@@ -3,6 +3,7 @@ import classes from "./ExpenseItem.module.css";
 import { Form } from "react-bootstrap";
 
 
+
 const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
   const expense = expenseItem;
   console.log(expenseItem);
@@ -19,7 +20,6 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
 
   const saveEditHandler = (updatedExpense) => {
     setEditExpense(null);
-    // call a function to save the updated expense
     onEdit(updatedExpense);
   };
 
@@ -29,7 +29,9 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
         <ul className={classes.ExpenseItem}>
           {expense.map((expense) => (
             <li key={expense.id} >
-              {expense.description} {expense.category} ${expense.money}   
+              <div>{expense.description} </div>
+              <div>{expense.category}</div>
+              <div>${expense.money}</div>    
               <button onClick={() => deleteHandler(expense)}>
                 Delete Expense
               </button>
@@ -40,6 +42,7 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
           ))}
         </ul>
       )}
+      
       {editExpense && (
         <div className={classes.editExpense}>
           <Form onSubmit={(event) => {
@@ -67,6 +70,7 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
             <button type="submit">Save</button>
             <button type="button" onClick={() => setEditExpense(null)}>Cancel</button>
           </Form>
+          
         </div>
       )}
     </React.Fragment>
