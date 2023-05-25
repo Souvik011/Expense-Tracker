@@ -10,6 +10,7 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
 
   const [editExpense, setEditExpense] = useState(null);
 
+
   const deleteHandler = (expenseItem) => {
     onDelete(expenseItem.id);
   };
@@ -29,13 +30,13 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
         <ul className={classes.ExpenseItem}>
           {expense.map((expense) => (
             <li key={expense.id} >
-              <div>{expense.description} </div>
-              <div>{expense.category}</div>
-              <div>${expense.money}</div>    
-              <button onClick={() => deleteHandler(expense)}>
+              <div style={{fontSize:"large",backgroundColor:"orange",paddingRight:"4px"}}>{expense.description} </div>
+              <div style={{fontSize:"medium",paddingRight:"8px"}}>{expense.category}</div>
+              <div style={{fontSize:"large",backgroundColor:"yellow",color:"red",paddingRight:"4px"}}>$ {expense.money}</div>    
+              <button style={{backgroundColor:"red" , color:"whitesmoke"}} onClick={() => deleteHandler(expense)}>
                 Delete Expense
               </button>
-              <button onClick={() => editHandler(expense)}>
+              <button style={{backgroundColor:"green" , color:"whitesmoke"}} onClick={() => editHandler(expense)}>
                 Edit Expense
               </button>
             </li>
@@ -61,7 +62,13 @@ const ExpenseItem = ({ expenseItem, onDelete ,onEdit}) => {
             </label>
             <label>
               Category:
-              <input type="text" name="category" defaultValue={editExpense.category} />
+             
+              <select name="category" defaultValue={editExpense.category} >
+            <option value="Food">Food</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Fuel">Fuel</option>
+            <option value="Other">Other</option>
+          </select>
             </label>
             <label>
               Amount:

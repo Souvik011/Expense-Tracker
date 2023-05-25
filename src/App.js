@@ -1,11 +1,11 @@
-import React from "react";
+import React  from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import WelcomePage from "./Pages/WelcomePage";
 import SignupPage from "./Pages/SignUpPage";
 import LogInPage from "./Pages/LogInPage";
 import ProfileComplete from "./Pages/ProfileComplete";
+import WelcomePage from "./Pages/WelcomePage";
 import Header from "./Header/Header";
 
 import Expenses from "./Pages/Expenses/Expenses";
@@ -14,9 +14,10 @@ import ForgotPassword from "./Pages/ForgotPassword";
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   
+  
   return (
     <React.Fragment>
-      <Header />
+      <Header/>
       <Routes>
         {isLoggedIn ? (
           <Route path="/" element={<Expenses />} />

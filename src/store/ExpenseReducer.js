@@ -1,33 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialExpenseSlice = { expenses: [] , expenseAmount: 0 };
+const initialExpenseSlice = { expenses: [] , expenseAmount: 0 , isVisibale: false };
 
 const expenseSlice = createSlice({
     name: 'expense',
     initialState: initialExpenseSlice,
     reducers: {
-        addExpense(state,action) {
-            state.expenses = action.payload;
-            let amount = +0;
-            for(var i=0 ; i<action.payload.length;i++){
-                amount = +amount + +action.payload[i].money;
-            }
-            state.expenseAmount = amount;
+        addExpense: (state, action) => {
+            state.expenses = action.payload.itemsArray;
+            state.expenseAmount = action.payload.expensesAmount;
+        },
+        deleteExpense(state) {
             
         },
-        deleteExpense(state,action) {
-            state.expenses.filter((expense) => expense.description !== action.payload.desc);
-            state.expenseAmount = +state.expenseAmount - +action.payload.money;
-            
+        editExpense(state) {
             
         },
-        editExpense(state,action) {
-            state.expenses = action.payload;
-            let amount = +0;
-            for(var i=0 ; i<action.payload.length;i++){
-                amount = +amount + +action.payload[i].money;
-            }
-            state.expenseAmount = amount; 
+        toggle(state) {
+            state.isVisibale = !state.isVisibale;
         }
     }
 });

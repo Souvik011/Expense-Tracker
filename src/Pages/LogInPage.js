@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { authActions } from "../store/Auth";
 import classes from "./LoginPage.module.css";
+import { getExpenseItemData } from "../store/expense-actions";
 
 const LogInPage = () => {
   const emailRef = useRef("");
@@ -38,10 +39,10 @@ const LogInPage = () => {
     if (response.ok) {
       console.log(data.email);
 
+      dispatch(authActions.login({ email: data.email, idToken: data.idToken }));
+
       emailRef.current.value = "";
       pswdRef.current.value = "";
-
-      dispatch(authActions.login({ email: data.email, idToken: data.idToken }));
 
       
     } else {

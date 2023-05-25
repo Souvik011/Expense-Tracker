@@ -4,6 +4,7 @@ import { useSelector , useDispatch } from "react-redux";
 import classes from "./Header.module.css";
 import { authActions } from "../store/Auth";
 import {themeActions} from "../store/Theme";
+import { expenseActions } from "../store/ExpenseReducer";
 
 
 const Header = () => {
@@ -29,26 +30,32 @@ const Header = () => {
 
   const darkModeActivation = () => {
     dispatch(themeActions.switchTheme());
+    
 
   };
 
   const normalModeActivation = () => {
     dispatch(themeActions.restoreTheme());
+    
+  };
+
+  const visibaleCartHandler = () => {
+    dispatch(expenseActions.toggle());
   };
 
   const downloadFile = ({ data, fileName, fileType }) => {
     const blob = new Blob([data], { type: fileType });
 
-    const doc = document.createElement("doc");
-    doc.download = fileName;
-    doc.href = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.download = fileName;
+    a.href = window.URL.createObjectURL(blob);
     const clickEvt = new MouseEvent("click", {
       view: window,
       bubbles: true,
       cancelable: true,
     });
-    doc.dispatchEvent(clickEvt);
-    doc.remove();
+    a.dispatchEvent(clickEvt);
+    a.remove();
   };
 
   const downloadExpenses = () => {
@@ -72,25 +79,28 @@ const Header = () => {
       <div>
         <h3>Expense Tracker</h3>
       </div>
-      {!isLoggedIn && <Link to="/signUp">Sign Up</Link>}
-      {!isLoggedIn && <Link to="/LogIn">Log In</Link>}
-      {!!isLoggedIn && <Link to="/expenses">Expenses</Link>}
+      {!isLoggedIn && <Link to="/signUp"><button style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Sign Up</button></Link>}
+      {!isLoggedIn && <Link to="/LogIn"><button style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Log In</button></Link>}
+      {!!isLoggedIn && <Link to="/expenses"><button style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Expenses</button></Link>}
       {isLoggedIn && (
         <Link onClick={logoutHandler} to="/LogIn">
-          Log out
+          <button style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Log out</button>
         </Link>
       )}
-       {!!isLoggedIn && expenseAmount > 1000 && premiumButton && (
-        <button onClick={activatePremiumAccount}>Premium Account</button>
+       {!!isLoggedIn && expenseAmount > 10000 && premiumButton && (
+        <button onClick={activatePremiumAccount} style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Premium Account</button>
       )}
-      {!!isLoggedIn && premiumAccount && expenseAmount > 1000 && !premiumButton && (
-        <button onClick={darkModeActivation}>Premium Mode</button>
+      {!!isLoggedIn && premiumAccount && expenseAmount > 10000 && !premiumButton && (
+        <button onClick={darkModeActivation} style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Premium Mode</button>
       )}
-      {!!isLoggedIn && premiumAccount && expenseAmount < 1000 && (
-        <button onClick={normalModeActivation}>Normal Mode</button>
+      {!!isLoggedIn && !premiumAccount && expenseAmount < 10000 && (
+        <button onClick={normalModeActivation} style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"fantasy"}}>Normal Mode</button>
       )}
-      {!!isLoggedIn && premiumAccount && expenseAmount > 1000 && (
-        <button onClick={downloadExpenses}>Download Expenses</button>
+      {!!isLoggedIn && premiumAccount && expenseAmount > 10000 && (
+        <button onClick={downloadExpenses} style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"cursive"}}>Download Expenses</button>
+      )}
+      {!!isLoggedIn  && (
+        <button onClick={visibaleCartHandler} style={{color:"blue",backgroundColor:"white",fontSize:"large",fontFamily:"sans-serif"}}>My Cart</button>
       )}
     </header>
   );

@@ -37,6 +37,9 @@ const WelcomePage = () => {
         <NavLink className={classes.button} to="/completeProfile">Click Here</NavLink>
       </div>
       <button className={classes.button} onClick={verifyEmailHandler}>Verify Email</button>
+
+
+      <div style={{width:"auto", height:"4rem" , padding:"2rem" , backgroundColor:"ghostwhite" , color:"blue" , fontFamily:"serif" , fontSize:"large"}}><h1>To ADD Expenses </h1> <NavLink to="/expenses">Click Here</NavLink></div>
     </div>
   );
 };

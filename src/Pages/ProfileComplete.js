@@ -1,5 +1,4 @@
 import React, {  useRef, useEffect, useState } from "react";
-// import LoginContext from "../Context/Login-Context";
 import { useSelector  } from "react-redux";
 import classes from "./ProfileComplete.module.css";
 import { Form } from "react-bootstrap";
@@ -68,7 +67,7 @@ const ProfileComplete = () => {
       }
     };
     fillInputsHandler();
-  }, []);
+  }, [idToken]);
 
   return (
     <React.Fragment>
